@@ -3,6 +3,8 @@ package com.nadeem.app.rest.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +17,14 @@ import com.nadeem.app.rest.support.data.EmployeeList;
 @Controller
 public class EmployeeController {
     
+    @RolesAllowed("Admin")
     @RequestMapping(method=RequestMethod.GET, value="/emp/{id}", headers="Accept=application/json,application/xml",  produces={"application/json","application/xml"})
     public @ResponseBody Employee getEmp(@PathVariable String id) {
         Employee e = new Employee(Long.parseLong(id));
         return e;
     }
-
+ 
+    @RolesAllowed({"Admin", "User"})
     @RequestMapping(method=RequestMethod.GET, value="/emps")
     public @ResponseBody EmployeeList getAllEmp() {
 

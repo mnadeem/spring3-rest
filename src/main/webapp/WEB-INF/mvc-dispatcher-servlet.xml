@@ -2,6 +2,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -10,7 +11,9 @@
         http://www.springframework.org/schema/util     
         http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/mvc 
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- Configures the annotation-driven Spring MVC Controller programming 
 		model. Note that, with Spring 3.0, this tag works in Servlet MVC only! -->
@@ -18,6 +21,9 @@
 
 	<!-- Activates various annotations to be detected in bean classes -->
 	<context:annotation-config />
+
+	<!-- Enable Aspect j -->
+	<aop:aspectj-autoproxy />
 
 	<util:properties id="applicationConfig" location="classpath:application.properties" />
 	<context:property-placeholder
@@ -30,6 +36,8 @@
 		as Spring beans. For example @Controller and @Service. Make sure to set the 
 		correct base-package -->
 	<context:component-scan base-package="com.nadeem.app.rest.controller" />
+	
+	<bean class="com.nadeem.app.rest.support.UserRoleAuthorizationAspect" />
 
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
