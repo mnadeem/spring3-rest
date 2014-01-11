@@ -19,7 +19,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.nadeem.app.rest.support.UnauthorizedError;
-import com.nadeem.app.rest.support.data.ErrorMessage;
+import com.nadeem.app.rest.support.data.ErrorMessages;
 
 @ControllerAdvice
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
@@ -38,7 +38,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
             error = objectError.getObjectName() + ", " + objectError.getDefaultMessage();
             errors.add(error);
         }
-        ErrorMessage errorMessage = new ErrorMessage(errors);
+        ErrorMessages errorMessage = new ErrorMessages(status.value(), errors);
         return new ResponseEntity<Object>(errorMessage, headers, status);
     }
  
@@ -46,20 +46,20 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         String unsupported = "Unsupported content type: " + ex.getContentType();
         String supported = "Supported content types: " + MediaType.toString(ex.getSupportedMediaTypes());
-        ErrorMessage errorMessage = new ErrorMessage(unsupported, supported);
+        ErrorMessages errorMessage = new ErrorMessages(unsupported, supported);
         return new ResponseEntity<Object>(errorMessage, headers, status);
     }
  
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         Throwable mostSpecificCause = ex.getMostSpecificCause();
-        ErrorMessage errorMessage;
+        ErrorMessages errorMessage;
         if (mostSpecificCause != null) {
             String exceptionName = mostSpecificCause.getClass().getName();
             String message = mostSpecificCause.getMessage();
-            errorMessage = new ErrorMessage(exceptionName, message);
+            errorMessage = new ErrorMessages(exceptionName, message);
         } else {
-            errorMessage = new ErrorMessage(ex.getMessage());
+            errorMessage = new ErrorMessages(ex.getMessage());
         }
         return new ResponseEntity<Object>(errorMessage, headers, status);
     }
@@ -68,8 +68,8 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     //@ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "Un Authorized Access")
     @ExceptionHandler(UnauthorizedError.class)
     @ResponseBody
-    public ErrorMessage handleException(UnauthorizedError ex) {
-        ErrorMessage errorMessage = new ErrorMessage("Un Authorized Access");
+    public ErrorMessages handleException(UnauthorizedError ex) {
+        ErrorMessages errorMessage = new ErrorMessages("Un Authorized Access");
         return errorMessage;
     }
 }

@@ -62,10 +62,9 @@
 
 	<bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
 
-		<property name="classesToBeBound">
+		<property name="packagesToScan">
 			<list>
-				<value>com.nadeem.app.rest.support.data.Employee</value>
-				<value>com.nadeem.app.rest.support.data.EmployeeList</value>
+				<value>com.nadeem.app.rest.support.data</value>
 			</list>
 		</property>
 

@@ -6,13 +6,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="employees")
-public class EmployeeList {
+public class Employees {
     private int count;
     private List<Employee> employees;
 
-    public EmployeeList() {}
+    public Employees() {}
     
-    public EmployeeList(List<Employee> employees) {
+    public Employees(List<Employee> employees) {
         this.employees = employees;
         this.count = employees.size();
     }

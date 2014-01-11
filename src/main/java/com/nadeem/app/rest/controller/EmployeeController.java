@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nadeem.app.rest.support.data.Employee;
-import com.nadeem.app.rest.support.data.EmployeeList;
+import com.nadeem.app.rest.support.data.Employees;
 
 @Controller
 public class EmployeeController {
@@ -26,9 +26,9 @@ public class EmployeeController {
  
     @RolesAllowed({"Admin", "User"})
     @RequestMapping(method=RequestMethod.GET, value="/emps")
-    public @ResponseBody EmployeeList getAllEmp() {
+    public @ResponseBody Employees getAllEmp() {
 
-        EmployeeList list = new EmployeeList(newEmployees());
+        Employees list = new Employees(newEmployees());
         return list;
     }
 
