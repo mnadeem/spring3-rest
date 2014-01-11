@@ -30,13 +30,12 @@
 			<web-resource-name>A Protected Page</web-resource-name>
 			<url-pattern>/service/*</url-pattern>
 		</web-resource-collection>
-				<auth-constraint>
+		<auth-constraint>
 			<role-name>Admin</role-name>
 			<role-name>User</role-name>
 		</auth-constraint>
-		<!-- <user-data-constraint>
-			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-		</user-data-constraint> -->
+		<!-- <user-data-constraint> <transport-guarantee>CONFIDENTIAL</transport-guarantee> 
+			</user-data-constraint> -->
 	</security-constraint>
 
 	<login-config>
