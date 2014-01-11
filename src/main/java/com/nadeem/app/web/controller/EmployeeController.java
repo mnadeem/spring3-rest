@@ -29,7 +29,7 @@ public class EmployeeController {
         return e;
     }
  
-    @RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin", "User"})
     @RequestMapping(method = RequestMethod.GET,
                 value="/emps")
     @ResponseBody

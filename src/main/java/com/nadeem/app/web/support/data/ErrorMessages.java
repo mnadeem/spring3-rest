@@ -19,6 +19,10 @@ public class ErrorMessages {
     public ErrorMessages(String error) {
         this(Collections.singletonList(error));
     }
+    
+    public ErrorMessages(final int newCode, String error) {
+        this(newCode, Collections.singletonList(error));
+    }
 
     public ErrorMessages(final List<String> errors) {
         this.errors = errors;

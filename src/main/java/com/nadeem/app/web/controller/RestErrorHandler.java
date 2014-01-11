@@ -69,7 +69,7 @@ public class RestErrorHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(UnauthorizedError.class)
     @ResponseBody
     public ErrorMessages handleException(UnauthorizedError ex) {
-        ErrorMessages errorMessage = new ErrorMessages("Un Authorized Access");
+        ErrorMessages errorMessage = new ErrorMessages(HttpStatus.UNAUTHORIZED.value(), "Un Authorized Access");
         return errorMessage;
     }
 }
