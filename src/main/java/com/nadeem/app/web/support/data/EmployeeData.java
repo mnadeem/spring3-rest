@@ -1,21 +1,21 @@
-package com.nadeem.app.rest.support.data;
+package com.nadeem.app.web.support.data;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="employee")
-public class Employee
+public class EmployeeData
 {
-    
+
     private long id;
     private String name;
     private String email;
     
-    public Employee()
+    public EmployeeData()
     {
-        // TODO Auto-generated constructor stub
+
     }
 
-    public Employee(long parseLong)
+    public EmployeeData(long parseLong)
     {
         this.id= parseLong;
     }
@@ -43,5 +43,5 @@ public class Employee
     {
         this.email = email;
     }
-    
+
 }

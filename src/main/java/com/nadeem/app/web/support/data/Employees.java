@@ -1,4 +1,4 @@
-package com.nadeem.app.rest.support.data;
+package com.nadeem.app.web.support.data;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="employees")
 public class Employees {
     private int count;
-    private List<Employee> employees;
+    private List<EmployeeData> employees;
 
     public Employees() {}
     
-    public Employees(List<Employee> employees) {
+    public Employees(List<EmployeeData> employees) {
         this.employees = employees;
         this.count = employees.size();
     }
@@ -25,11 +25,11 @@ public class Employees {
     }
     
     @XmlElement(name="employee")
-    public List<Employee> getEmployees() {
+    public List<EmployeeData> getEmployees() {
         return employees;
     }
-    public void setEmployees(List<Employee> employees) {
+    public void setEmployees(List<EmployeeData> employees) {
         this.employees = employees;
     }
-    
+
 }

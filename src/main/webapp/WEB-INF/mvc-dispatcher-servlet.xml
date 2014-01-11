@@ -1,7 +1,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
@@ -35,9 +37,9 @@
 	<!-- Scans the classpath for annotated components that will be auto-registered 
 		as Spring beans. For example @Controller and @Service. Make sure to set the 
 		correct base-package -->
-	<context:component-scan base-package="com.nadeem.app.rest.controller" />
+	<context:component-scan base-package="com.nadeem.app.web.controller" />
 	
-	<bean class="com.nadeem.app.rest.support.UserRoleAuthorizationAspect" />
+	<bean class="com.nadeem.app.web.support.aspect.UserRoleAuthorizationAspect" />
 
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
@@ -64,7 +66,7 @@
 
 		<property name="packagesToScan">
 			<list>
-				<value>com.nadeem.app.rest.support.data</value>
+				<value>com.nadeem.app.web.support.data</value>
 			</list>
 		</property>
 
