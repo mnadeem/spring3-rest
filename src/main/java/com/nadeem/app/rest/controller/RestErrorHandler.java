@@ -22,7 +22,7 @@ import com.nadeem.app.rest.support.UnauthorizedError;
 import com.nadeem.app.rest.support.data.ErrorMessages;
 
 @ControllerAdvice
-public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestErrorHandler extends ResponseEntityExceptionHandler {
  
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
