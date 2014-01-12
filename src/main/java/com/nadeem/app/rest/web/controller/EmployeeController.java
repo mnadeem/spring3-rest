@@ -29,7 +29,7 @@ public class EmployeeController {
         headers = "Accept=application/json,application/xml",
         produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
-    public EmployeeData getEmp(@PathVariable Long id) {
+    public EmployeeData getEmp(@PathVariable("id") Long id) {
         Employee employee = this.employeeService.findById(id);
         return createEmployeeVO(employee);
     }
