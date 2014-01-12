@@ -3,7 +3,7 @@ package com.nadeem.app.rest.web.controller;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -57,6 +57,7 @@ public class EmployeeControllerTest
         when(this.employeeService.findById(1l)).thenReturn(newEmployee(1l));
         this.mockMvc.perform(get("/emp/{id}", 1l).accept(MediaType.APPLICATION_JSON))
            .andExpect(status().isOk())
+           .andExpect(content().contentType(MediaType.APPLICATION_JSON))
            .andExpect(jsonPath("$.id").value(1));;          
     }
 
