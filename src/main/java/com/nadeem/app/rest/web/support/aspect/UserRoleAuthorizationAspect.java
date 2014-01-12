@@ -1,4 +1,4 @@
-package com.nadeem.app.web.support.aspect;
+package com.nadeem.app.rest.web.support.aspect;
 
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.nadeem.app.common.exception.UnauthorizedError;
+import com.nadeem.app.rest.common.exception.UnauthorizedError;
 
 /**
  * @author xprk075 (Nadeem Mohammad)

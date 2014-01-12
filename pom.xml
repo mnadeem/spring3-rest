@@ -182,16 +182,6 @@
 	<build>
 		<finalName>spring3Rest</finalName>
 
-		<resources>
-			<resource>
-				<targetPath>.</targetPath>
-				<directory>src/main/config</directory>
-			</resource>
-			<resource>
-				<targetPath>.</targetPath>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
 
 		<plugins>
 

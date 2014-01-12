@@ -1,4 +1,4 @@
-package com.nadeem.app.web.support.data;
+package com.nadeem.app.rest.web.support.data;
 
 import java.util.Arrays;
 import java.util.Collections;

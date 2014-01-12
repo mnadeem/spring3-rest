@@ -1,4 +1,4 @@
-package com.nadeem.app.web.controller;
+package com.nadeem.app.rest.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.nadeem.app.web.support.data.EmployeeData;
-import com.nadeem.app.web.support.data.Employees;
+import com.nadeem.app.rest.web.support.data.EmployeeData;
+import com.nadeem.app.rest.web.support.data.Employees;
 
 @Controller
 public class EmployeeController {

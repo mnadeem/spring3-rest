@@ -37,9 +37,9 @@
 	<!-- Scans the classpath for annotated components that will be auto-registered 
 		as Spring beans. For example @Controller and @Service. Make sure to set the 
 		correct base-package -->
-	<context:component-scan base-package="com.nadeem.app.web.controller" />
+	<context:component-scan base-package="com.nadeem.app.rest.web.controller" />
 	
-	<bean class="com.nadeem.app.web.support.aspect.UserRoleAuthorizationAspect" />
+	<bean class="com.nadeem.app.rest.web.support.aspect.UserRoleAuthorizationAspect" />
 
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
@@ -66,7 +66,7 @@
 
 		<property name="packagesToScan">
 			<list>
-				<value>com.nadeem.app.web.support.data</value>
+				<value>com.nadeem.app.rest.web.support.data</value>
 			</list>
 		</property>
 

@@ -1,19 +1,21 @@
-package com.nadeem.app.common.data;
+package com.nadeem.app.rest.web.support.data;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class Employee
+@XmlRootElement(name="employee")
+public class EmployeeData
 {
-    
+
     private long id;
     private String name;
     private String email;
     
-    public Employee()
+    public EmployeeData()
     {
 
     }
 
-    public Employee(long parseLong)
+    public EmployeeData(long parseLong)
     {
         this.id= parseLong;
     }

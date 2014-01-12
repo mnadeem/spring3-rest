@@ -1,4 +1,4 @@
-package com.nadeem.app.common.exception;
+package com.nadeem.app.rest.common.exception;
 
 
 public class UnauthorizedError extends RuntimeException

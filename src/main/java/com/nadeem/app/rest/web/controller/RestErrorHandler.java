@@ -1,4 +1,4 @@
-package com.nadeem.app.web.controller;
+package com.nadeem.app.rest.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.nadeem.app.common.exception.UnauthorizedError;
-import com.nadeem.app.web.support.data.ErrorMessages;
+import com.nadeem.app.rest.common.exception.UnauthorizedError;
+import com.nadeem.app.rest.web.support.data.ErrorMessages;
 
 @ControllerAdvice
 public class RestErrorHandler extends ResponseEntityExceptionHandler {
