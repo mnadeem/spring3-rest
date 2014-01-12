@@ -21,6 +21,8 @@
 		<jsonpath.version>0.9.0</jsonpath.version>
 		<junit.version>4.8.1</junit.version>
 		<jetty-maven-plugin.version>8.0.0.M3</jetty-maven-plugin.version>
+		<jmockit.version>1.4</jmockit.version>
+		<mockito.version>1.9.5</mockito.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -177,6 +179,11 @@
 			</exclusions>
 		</dependency>
 
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
