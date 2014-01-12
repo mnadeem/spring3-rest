@@ -1,0 +1,78 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util     
+        http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- Map static resources, order should be before dispatcher servlet! /resources/ is for application defined resources.
+         Serve these resources with a 1-year future expiration to ensure maximum use of the browser cache and a reduction in HTTP requests made by the browser -->
+    <mvc:resources order="0" mapping="/resources/**" location="/resources/, classpath:/META-INF/web-resources/" cache-period="31556926"/>
+    
+     <!-- This tag allows for mapping the DispatcherServlet to "/" (thus overriding the mapping of the container's default Servlet),
+      while still allowing static resource requests to be handled by the container's default Servlet. -->
+    <mvc:default-servlet-handler/>
+	
+	 <!-- This tag defaults the basic components required for delegating the requests to your Controllers.
+         If this tag is not added to the XML, then you will have to manually define the beans for components like HandlerAdapter,
+         HandlerMapping, Binding Initializer, Request Message converters, etc. This tag helps registering the following components.
+         Need to research configuring, application validation/binding initializer does not work when enabling... -->
+    <mvc:annotation-driven />
+
+	<!-- Activates various annotations to be detected in bean classes -->
+	<context:annotation-config />
+
+	<!-- Enable Aspect j -->
+	<aop:aspectj-autoproxy />
+	
+	<!-- Scans the classpath for annotated components that will be auto-registered 
+		as Spring beans. For example @Controller and @Service. Make sure to set the 
+		correct base-package -->
+	<context:component-scan base-package="com.nadeem.app.rest.web.controller" />
+	
+	<bean class="com.nadeem.app.rest.web.support.aspect.UserRoleAuthorizationAspect" />
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jsonConverter" />
+				<ref bean="marshallingConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="jsonConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes" value="application/json" />
+	</bean>
+
+
+	<bean id="marshallingConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+		<constructor-arg ref="jaxbMarshaller" />
+		<property name="supportedMediaTypes" value="application/xml" />
+	</bean>
+
+	<bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+
+		<property name="packagesToScan">
+			<list>
+				<value>com.nadeem.app.rest.web.support.data</value>
+			</list>
+		</property>
+
+	</bean>
+
+</beans>

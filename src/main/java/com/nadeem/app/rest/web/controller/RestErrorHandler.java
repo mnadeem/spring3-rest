@@ -63,7 +63,7 @@ public class RestErrorHandler extends ResponseEntityExceptionHandler {
         }
         return new ResponseEntity<Object>(errorMessage, headers, status);
     }
-    
+
     // Convert a predefined exception to an HTTP Status code
     //@ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "Un Authorized Access")
     @ExceptionHandler(UnauthorizedError.class)
