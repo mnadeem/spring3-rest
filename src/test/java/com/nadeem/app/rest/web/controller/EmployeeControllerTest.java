@@ -22,7 +22,6 @@ import org.springframework.web.context.WebApplicationContext;
 import com.nadeem.app.rest.repository.entitiy.Employee;
 import com.nadeem.app.rest.service.EmployeeService;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/com/nadeem/app/rest/config/service/rest-service-test.ctxt.xml",
                                         "classpath:/com/nadeem/app/rest/config/web/rest-web.ctxt.xml"})

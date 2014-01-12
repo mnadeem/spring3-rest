@@ -8,3 +8,4 @@ spring3-rest
 3.  Authentication
 4.  Authorization with jsr 250
 5.  Custom Aspect
+6.  Testing
