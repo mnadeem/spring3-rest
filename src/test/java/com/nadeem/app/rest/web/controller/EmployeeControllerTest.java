@@ -51,7 +51,7 @@ public class EmployeeControllerTest
     }
 
     @Test
-    public void AdminShouldSuccessfullyGetEmployeeById() throws Exception
+    public void AdminShouldSuccessfullyGetEmployeeJSONById() throws Exception
     {
         this.servletContext.declareRoles("Admin");
         when(this.employeeService.findById(1l)).thenReturn(newEmployee(1l));
@@ -59,6 +59,17 @@ public class EmployeeControllerTest
            .andExpect(status().isOk())
            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
            .andExpect(jsonPath("$.id").value(1));;          
+    }
+    
+    @Test
+    public void AdminShouldSuccessfullyGetEmployeeXMLById() throws Exception
+    {
+        this.servletContext.declareRoles("Admin");
+        when(this.employeeService.findById(1l)).thenReturn(newEmployee(1l));
+        this.mockMvc.perform(get("/emp/{id}", 1l).accept(MediaType.APPLICATION_XML))
+           .andExpect(status().isOk())
+           .andExpect(content().contentType(MediaType.APPLICATION_XML))
+           .andExpect(xpath("employee/id").string("1"));;          
     }
 
     private Employee newEmployee(long id)
