@@ -3,10 +3,9 @@ package com.nadeem.app.rest.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.security.RolesAllowed;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,7 @@ public class EmployeeController {
 
     private EmployeeService employeeService;
 
-    @RolesAllowed("Admin")
+    @Secured("ROLE_ADMIN")
     @RequestMapping(method=RequestMethod.GET,
         value = "/emp/{id}",
         headers = "Accept=application/json,application/xml",
@@ -40,7 +39,7 @@ public class EmployeeController {
         return employeeData;
     }
 
-    @RolesAllowed({"Admin", "User"})
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(method = RequestMethod.GET,
                 value="/emps")
     @ResponseBody

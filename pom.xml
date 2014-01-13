@@ -11,7 +11,8 @@
 	<properties>
 		<aspectj.version>1.7.1</aspectj.version>
 		<cglib.version>2.2.2</cglib.version>
-		<spring.version>3.2.0.RELEASE</spring.version>
+		<spring.version>3.2.6.RELEASE</spring.version>
+		<spring-security.version>3.2.0.RELEASE</spring-security.version>
 		<hamcrest.version>1.3</hamcrest.version>
 		<logback.version>1.0.13</logback.version>
 		<servlet-api.version>2.5</servlet-api.version>
@@ -23,6 +24,7 @@
 		<jetty-maven-plugin.version>8.0.0.M3</jetty-maven-plugin.version>
 		<jmockit.version>1.4</jmockit.version>
 		<mockito.version>1.9.5</mockito.version>
+		<metrics.version>3.0.1</metrics.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -57,8 +59,40 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>${spring.version}</version>
+			<version>${spring-security.version}</version>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>*</artifactId>
+					<groupId>*</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring-security.version}</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>*</artifactId>
+					<groupId>*</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring-security.version}</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>*</artifactId>
+					<groupId>*</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -133,6 +167,24 @@
 			<version>${logback.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.codahale.metrics</groupId>
+			<artifactId>metrics-core</artifactId>
+			<version>${metrics.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.codahale.metrics</groupId>
+			<artifactId>metrics-servlet</artifactId>
+			<version>${metrics.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.codahale.metrics</groupId>
+			<artifactId>metrics-servlets</artifactId>
+			<version>${metrics.version}</version>
+		</dependency>
+
 		<!-- JUnit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -183,7 +235,9 @@
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>${mockito.version}</version>
+			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -192,36 +246,14 @@
 
 		<plugins>
 
-			<!-- <plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>keytool-maven-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<phase>generate-resources</phase>
-						<id>clean</id>
-						<goals>
-							<goal>clean</goal>
-						</goals>
-					</execution>
-					<execution>
-						<phase>generate-resources</phase>
-						<id>genkey</id>
-						<goals>
-							<goal>generateKeyPair</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<keystore>${project.build.directory}/jetty-ssl.keystore</keystore>
-					<dname>cn=my.hostname.tld</dname>
-					put your CN here
-					<keypass>jetty8</keypass>
-					<storepass>jetty8</storepass>
-					<alias>jetty8</alias>
-					<keyalg>RSA</keyalg>
-				</configuration>
-			</plugin> -->
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>keytool-maven-plugin</artifactId> 
+				<version>1.4</version> <executions> <execution> <phase>generate-resources</phase> 
+				<id>clean</id> <goals> <goal>clean</goal> </goals> </execution> <execution> 
+				<phase>generate-resources</phase> <id>genkey</id> <goals> <goal>generateKeyPair</goal> 
+				</goals> </execution> </executions> <configuration> <keystore>${project.build.directory}/jetty-ssl.keystore</keystore> 
+				<dname>cn=my.hostname.tld</dname> put your CN here <keypass>jetty8</keypass> 
+				<storepass>jetty8</storepass> <alias>jetty8</alias> <keyalg>RSA</keyalg> 
+				</configuration> </plugin> -->
 
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
@@ -231,6 +263,7 @@
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webAppConfig>
 						<contextPath>/rest</contextPath>
+						<!-- <overrideDescriptor>src/test/webapp/WEB-INF/override-jetty-web.xml</overrideDescriptor> -->
 						<extraClasspath>target/test-classes/;target/classes/;</extraClasspath>
 					</webAppConfig>
 					<loginServices>
@@ -250,12 +283,6 @@
 					</connectors>
 				</configuration>
 
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.0</version>
 			</plugin>
 
 			<plugin>

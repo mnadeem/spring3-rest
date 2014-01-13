@@ -18,8 +18,8 @@
 		resource="classpath*:/com/nadeem/app/rest/config/repository/rest-respository.xml" /> -->
 	<import
 		resource="classpath*:/com/nadeem/app/rest/config/service/rest-service.ctxt.xml" />
-	<!-- <import
-		resource="classpath*:/com/nadeem/app/rest/config/web/rest-security.ctxt.xml" /> -->
+	<import
+		resource="classpath*:/com/nadeem/app/rest/config/web/rest-security.ctxt.xml" />
 	<import
 		resource="classpath*:/com/nadeem/app/rest/config/web/rest-web.ctxt.xml" />
 	<import

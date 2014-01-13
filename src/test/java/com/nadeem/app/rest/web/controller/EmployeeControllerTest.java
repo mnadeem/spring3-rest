@@ -2,8 +2,13 @@ package com.nadeem.app.rest.web.controller;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +17,10 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -24,7 +33,8 @@ import com.nadeem.app.rest.service.EmployeeService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/com/nadeem/app/rest/config/service/rest-service-test.ctxt.xml",
-                                        "classpath:/com/nadeem/app/rest/config/web/rest-web.ctxt.xml"})
+                                        "classpath:/com/nadeem/app/rest/config/web/rest-web.ctxt.xml",
+                                        "classpath:/com/nadeem/app/rest/config/web/rest-security.ctxt.xml"})
 @WebAppConfiguration
 public class EmployeeControllerTest
 {
@@ -53,20 +63,31 @@ public class EmployeeControllerTest
     @Test
     public void AdminShouldSuccessfullyGetEmployeeJSONById() throws Exception
     {
-        this.servletContext.declareRoles("Admin");
+        UsernamePasswordAuthenticationToken principal = buildPrincipal("ROLE_ADMIN");
+        SecurityContextHolder.getContext().setAuthentication(principal);
+        
         when(this.employeeService.findById(1l)).thenReturn(newEmployee(1l));
-        this.mockMvc.perform(get("/emp/{id}", 1l).accept(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/emp/{id}", 1l).principal(principal).accept(MediaType.APPLICATION_JSON))
            .andExpect(status().isOk())
            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
            .andExpect(jsonPath("$.id").value(1));;          
     }
-    
+
+    private UsernamePasswordAuthenticationToken buildPrincipal(String role)
+    {
+        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+        list.add(new SimpleGrantedAuthority(role));        
+        UsernamePasswordAuthenticationToken principal = new UsernamePasswordAuthenticationToken("testUSer", "testPwd",list);
+        return principal;
+    }
+
     @Test
     public void AdminShouldSuccessfullyGetEmployeeXMLById() throws Exception
     {
-        this.servletContext.declareRoles("Admin");
+        UsernamePasswordAuthenticationToken principal = buildPrincipal("ROLE_ADMIN");
+        SecurityContextHolder.getContext().setAuthentication(principal);
         when(this.employeeService.findById(1l)).thenReturn(newEmployee(1l));
-        this.mockMvc.perform(get("/emp/{id}", 1l).accept(MediaType.APPLICATION_XML))
+        this.mockMvc.perform(get("/emp/{id}", 1l).principal(principal).accept(MediaType.APPLICATION_XML))
            .andExpect(status().isOk())
            .andExpect(content().contentType(MediaType.APPLICATION_XML))
            .andExpect(xpath("employee/id").string("1"));;          
