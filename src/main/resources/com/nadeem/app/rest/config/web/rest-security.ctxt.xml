@@ -17,7 +17,7 @@
    - http://static.springsource.org/spring-security/site/docs/3.1.x/reference/appendix-namespace.html#d0e8651
    See Spring Security 3.1 Referecne 15.1.1 Common Built-In Expressions
    - http://static.springsource.org/spring-security/site/docs/3.1.x/reference/el-access.html -->
- <global-method-security secured-annotations="enabled" />
+ <global-method-security jsr250-annotations="enabled"  />
 
 	<http>
 		<http-basic />

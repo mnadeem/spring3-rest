@@ -22,7 +22,7 @@
 		resource="classpath*:/com/nadeem/app/rest/config/web/rest-security.ctxt.xml" />
 	<import
 		resource="classpath*:/com/nadeem/app/rest/config/web/rest-web.ctxt.xml" />
-	<import
-		resource="classpath*:/com/nadeem/app/rest/config/web/rest-web-aspect.ctxt.xml" />
+<!-- 	<import
+		resource="classpath*:/com/nadeem/app/rest/config/web/rest-web-aspect.ctxt.xml" /> -->
 
 </beans>
