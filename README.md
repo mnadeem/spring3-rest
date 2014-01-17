@@ -9,3 +9,4 @@ spring3-rest
 4.  Authorization with jsr 250
 5.  Custom Aspect
 6.  Testing
+7.  Codahale Metrics
