@@ -25,6 +25,7 @@
 		<jmockit.version>1.4</jmockit.version>
 		<mockito.version>1.9.5</mockito.version>
 		<metrics.version>3.0.1</metrics.version>
+		<metrics-spring.version>3.0.0-RC4</metrics-spring.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -102,13 +103,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectj.version}</version>
@@ -125,17 +119,20 @@
 			<groupId>javax.annotation</groupId>
 			<artifactId>jsr250-api</artifactId>
 			<version>${jsr250api.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
 			<version>${cglib.version}</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${jackson.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -150,39 +147,66 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
+			<scope>compile</scope>			
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jul-to-slf4j</artifactId>
 			<version>${slf4j.version}</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+		    <groupId>com.ryantenney.metrics</groupId>
+		    <artifactId>metrics-spring</artifactId>
+		    <version>${metrics-spring.version}</version>
+		    <scope>compile</scope>
+		    <exclusions>
+		    	<exclusion>
+		    		<artifactId>*</artifactId>
+		    		<groupId>*</groupId>
+		    	</exclusion>
+		    </exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>com.codahale.metrics</groupId>
 			<artifactId>metrics-core</artifactId>
 			<version>${metrics.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.codahale.metrics</groupId>
 			<artifactId>metrics-servlet</artifactId>
 			<version>${metrics.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.codahale.metrics</groupId>
 			<artifactId>metrics-servlets</artifactId>
 			<version>${metrics.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.codahale.metrics</groupId>
+			<artifactId>metrics-logback</artifactId>
+			<version>${metrics.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- JUnit -->
@@ -237,7 +261,16 @@
 			<version>${mockito.version}</version>
 			<scope>test</scope>
 		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
 
+		
 	</dependencies>
 
 	<build>
@@ -269,7 +302,10 @@
 					<loginServices>
 						<loginService implementation="org.eclipse.jetty.security.HashLoginService">
 							<name>MyRealm</name>
-							<config>${project.basedir}/src/test/resources/jetty-realm.properties</config>
+							<!-- <config> element is required if  web.xml contains a loginConfig element.
+							Even though Spring security handles the authentication. 
+							So jetty-realm.properties is pretty much useless and should not contain anything-->
+							<!-- <config>${project.basedir}/src/test/resources/jetty-realm.properties</config> -->
 						</loginService>
 					</loginServices>
 					<connectors>

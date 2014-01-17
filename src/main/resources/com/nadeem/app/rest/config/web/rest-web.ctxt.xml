@@ -19,7 +19,7 @@
 
 	<!-- Map static resources, order should be before dispatcher servlet! /resources/ is for application defined resources.
          Serve these resources with a 1-year future expiration to ensure maximum use of the browser cache and a reduction in HTTP requests made by the browser -->
-    <mvc:resources order="0" mapping="/resources/**" location="/resources/, classpath:/META-INF/web-resources/" cache-period="31556926"/>
+    <mvc:resources order="0" mapping="/static/**" location="/static/, classpath:/META-INF/web-resources/" cache-period="31556926"/>
     
      <!-- This tag allows for mapping the DispatcherServlet to "/" (thus overriding the mapping of the container's default Servlet),
       while still allowing static resource requests to be handled by the container's default Servlet. -->
