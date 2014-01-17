@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.codahale.metrics.annotation.Timed;
 import com.nadeem.app.rest.repository.entitiy.Employee;
 import com.nadeem.app.rest.service.EmployeeService;
 import com.nadeem.app.rest.web.support.data.EmployeeData;
@@ -23,6 +24,7 @@ public class EmployeeController {
 
     private EmployeeService employeeService;
 
+    @Timed
     @RolesAllowed("ROLE_ADMIN")
     @RequestMapping(method=RequestMethod.GET,
         value = "/emp/{id}",
@@ -39,7 +41,8 @@ public class EmployeeController {
         EmployeeData employeeData = new EmployeeData(employee.getId());
         return employeeData;
     }
-
+    
+    @Timed
     @RolesAllowed({"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(method = RequestMethod.GET,
                 value="/emps")
