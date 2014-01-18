@@ -6,7 +6,7 @@ import com.codahale.metrics.SharedMetricRegistries;
 public class RestSharedMetricRegistry
 {
 
-    private static final String DEFAULT_REGISTRY_NAME = "DEFAULT_METRIC_REGISTRY";
+    public static final String DEFAULT_REGISTRY_NAME = "DEFAULT_METRIC_REGISTRY";
 
     private RestSharedMetricRegistry() { /* singleton */ }
 

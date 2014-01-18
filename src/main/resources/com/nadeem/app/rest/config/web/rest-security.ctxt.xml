@@ -19,13 +19,14 @@
    - http://static.springsource.org/spring-security/site/docs/3.1.x/reference/el-access.html -->
  <global-method-security jsr250-annotations="enabled"  />
 
-	<http>
+	<http use-expressions="true">
 		<http-basic />
+		<intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')"/>
 	</http>
 
 	<authentication-manager >
 		<authentication-provider>
-			<user-service properties="classpath:local-user-database-realm.properties"/>
+			<user-service properties="classpath:user-database-realm.properties"/>
 		</authentication-provider>
 	</authentication-manager>
 	

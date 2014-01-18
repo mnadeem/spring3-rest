@@ -1,6 +1,6 @@
 package com.nadeem.app.rest.web.controller;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -66,11 +66,11 @@ public class EmployeeControllerTest
         UsernamePasswordAuthenticationToken principal = buildPrincipal("ROLE_ADMIN");
         SecurityContextHolder.getContext().setAuthentication(principal);
         
-        when(this.employeeService.findById(1l)).thenReturn(newEmployee(1l));
+        when(this.employeeService.findById(anyLong())).thenReturn(newEmployee(1l));
         this.mockMvc.perform(get("/emp/{id}", 1l).principal(principal).accept(MediaType.APPLICATION_JSON))
            .andExpect(status().isOk())
            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-           .andExpect(jsonPath("$.id").value(1));;          
+           .andExpect(jsonPath("$.name").value("somuser"));;          
     }
 
     private UsernamePasswordAuthenticationToken buildPrincipal(String role)
@@ -90,11 +90,11 @@ public class EmployeeControllerTest
         this.mockMvc.perform(get("/emp/{id}", 1l).principal(principal).accept(MediaType.APPLICATION_XML))
            .andExpect(status().isOk())
            .andExpect(content().contentType(MediaType.APPLICATION_XML))
-           .andExpect(xpath("employee/id").string("1"));;          
+           .andExpect(xpath("employee/name").string("somuser"));;          
     }
 
     private Employee newEmployee(long id)
     {
-        return new Employee(id);
+        return new Employee.Builder("somuser", "somuser@domain.com").build();
     }
 }

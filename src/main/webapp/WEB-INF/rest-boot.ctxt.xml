@@ -14,18 +14,12 @@
 
 	<context:property-placeholder properties-ref="applicationConfig" />
 	
-	<!--  <import
-		resource="classpath*:/com/nadeem/app/rest/config/repository/rest-respository.xml" /> -->
-	<import
-		resource="classpath*:/com/nadeem/app/rest/config/service/rest-service.ctxt.xml" />
-	<import
-		resource="classpath*:/com/nadeem/app/rest/config/web/rest-security.ctxt.xml" />
-	<import
-		resource="classpath*:/com/nadeem/app/rest/config/web/rest-web.ctxt.xml" />
-<!-- 	<import
-		resource="classpath*:/com/nadeem/app/rest/config/web/rest-web-aspect.ctxt.xml" /> -->
+	<import resource="classpath*:/com/nadeem/app/rest/config/repository/rest-repository.ctxt.xml" />
+	<import resource="classpath*:/com/nadeem/app/rest/config/service/rest-service.ctxt.xml" />
+	<import resource="classpath*:/com/nadeem/app/rest/config/web/rest-security.ctxt.xml" />
+	<import resource="classpath*:/com/nadeem/app/rest/config/web/rest-web.ctxt.xml" />
+<!--<import resource="classpath*:/com/nadeem/app/rest/config/web/rest-web-aspect.ctxt.xml" /> -->
 		
-	<import
-		resource="classpath*:/com/nadeem/app/rest/config/rest-metrics.ctxt.xml" />
+	<import resource="classpath*:/com/nadeem/app/rest/config/rest-metrics.ctxt.xml" />
 
 </beans>

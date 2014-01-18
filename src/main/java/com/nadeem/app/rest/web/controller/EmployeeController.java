@@ -39,6 +39,8 @@ public class EmployeeController {
     private EmployeeData createEmployeeVO(Employee employee)
     {
         EmployeeData employeeData = new EmployeeData(employee.getId());
+        employeeData.setName(employee.getName());
+        employeeData.setEmail(employee.getEmail());
         return employeeData;
     }
     
