@@ -12,3 +12,4 @@ Spring Rest Example
 7.  Codahale Metrics
 8.  Spring data JPA
 9.  Ehcache
+10.  Dozer

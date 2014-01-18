@@ -69,6 +69,21 @@ public class Employee implements Serializable
         return email;
     }
     
+    public DateTime getCreationTime()
+    {
+        return creationTime;
+    }
+
+    public DateTime getModificationTime()
+    {
+        return modificationTime;
+    }
+
+    public long getVersion()
+    {
+        return version;
+    }
+
     public void update(final String newEmail)
     {
         this.email = newEmail;

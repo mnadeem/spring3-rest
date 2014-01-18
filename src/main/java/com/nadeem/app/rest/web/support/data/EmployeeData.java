@@ -2,6 +2,8 @@ package com.nadeem.app.rest.web.support.data;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.joda.time.DateTime;
+
 @XmlRootElement(name="employee")
 public class EmployeeData
 {
@@ -9,6 +11,8 @@ public class EmployeeData
     private long id;
     private String name;
     private String email;
+    private DateTime creationTime;
+    private DateTime modificationTime;
     
     public EmployeeData()
     {
@@ -44,4 +48,23 @@ public class EmployeeData
         this.email = email;
     }
 
+    public DateTime getCreationTime()
+    {
+        return creationTime;
+    }
+
+    public void setCreationTime(DateTime creationTime)
+    {
+        this.creationTime = creationTime;
+    }
+
+    public DateTime getModificationTime()
+    {
+        return modificationTime;
+    }
+
+    public void setModificationTime(DateTime modificationTime)
+    {
+        this.modificationTime = modificationTime;
+    }
 }

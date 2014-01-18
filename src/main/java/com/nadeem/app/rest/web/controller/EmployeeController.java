@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
 
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import com.nadeem.app.rest.web.support.data.Employees;
 public class EmployeeController {
 
     private EmployeeService employeeService;
+    private Mapper dozerMapper;
 
     @Timed
     @RolesAllowed("ROLE_ADMIN")
@@ -33,17 +35,9 @@ public class EmployeeController {
     @ResponseBody
     public EmployeeData getEmp(@PathVariable("id") Long id) {
         Employee employee = this.employeeService.findById(id);
-        return createEmployeeVO(employee);
+        return this.dozerMapper.map(employee, EmployeeData.class);
     }
- 
-    private EmployeeData createEmployeeVO(Employee employee)
-    {
-        EmployeeData employeeData = new EmployeeData(employee.getId());
-        employeeData.setName(employee.getName());
-        employeeData.setEmail(employee.getEmail());
-        return employeeData;
-    }
-    
+
     @Timed
     @RolesAllowed({"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(method = RequestMethod.GET,
@@ -67,7 +61,7 @@ public class EmployeeController {
         List<EmployeeData> employeesData = new ArrayList<EmployeeData>();
         for (Employee employee : employees)
         {
-            employeesData.add(createEmployeeVO(employee));
+            employeesData.add(this.dozerMapper.map(employee, EmployeeData.class));
         }
         return employeesData;
     }
@@ -75,6 +69,11 @@ public class EmployeeController {
     public void setEmployeeService(EmployeeService employeeService)
     {
         this.employeeService = employeeService;
+    }
+    @Autowired
+    public void setDozerBeanMapper(Mapper dozerBeanMapper)
+    {
+        this.dozerMapper = dozerBeanMapper;
     }
     
 }

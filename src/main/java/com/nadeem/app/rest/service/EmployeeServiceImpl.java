@@ -1,5 +1,6 @@
 package com.nadeem.app.rest.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -28,11 +29,12 @@ public class EmployeeServiceImpl implements EmployeeService
     @Override
     public List<Employee> findAll()
     {
-        /*List<Employee> employees = new ArrayList<Employee>();
+        List<Employee> employees = new ArrayList<Employee>();
         employees.add(new Employee.Builder("somuser1", "somuser1@domain.com").build());
         employees.add(new Employee.Builder("somuser2", "somuser2@domain.com").build());
-        employees.add(new Employee.Builder("somuser3", "somuser3@domain.com").build());*/
-        return this.repository.findAll();
+        employees.add(new Employee.Builder("somuser3", "somuser3@domain.com").build());
+        return employees;
+        //return this.repository.findAll();
     }
     
     @Transactional(readOnly = true)
