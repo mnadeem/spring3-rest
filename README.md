@@ -51,10 +51,14 @@ Modify srcipt/style refrences of  src/main/webapp/static/index.html file suce th
 
 for example, modify 
 ```javascript
-<script src="scripts/app.js"></script>
+<script src="scripts/535d1513.scripts.js"></script>
 ```
 as 
 
 ```javascript
-<script src="static/scripts/app.js"></script>
+<script src="static/scripts/535d1513.scripts.js"></script>
+```
+
+```bash
+mvn jetty:run
 ```
