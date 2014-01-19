@@ -29,12 +29,24 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h1>
-<a name="spring-rest-example" class="anchor" href="#spring-rest-example"><span class="octicon octicon-link"></span></a>Spring Rest Example</h1>
+<a name="client-side-mvc-and-spring-3-rest" class="anchor" href="#client-side-mvc-and-spring-3-rest"><span class="octicon octicon-link"></span></a>Client Side MVC and Spring 3 Rest</h1>
 
-<h5>
-<a name="spring3-rest-example-demonstrating" class="anchor" href="#spring3-rest-example-demonstrating"><span class="octicon octicon-link"></span></a>Spring3 Rest example demonstrating</h5>
+<p>This example is intended to demonstrate things in two ares, this idea is to have clear separation between client side and server side
+at the same time allow seam less integration between them</p>
 
-<ol>
+<h4>
+<a name="client-side-technologies" class="anchor" href="#client-side-technologies"><span class="octicon octicon-link"></span></a>Client Side Technologies</h4>
+
+<ul>
+<li> Angular JS</li>
+<li> Yeoman</li>
+<li> Grunt</li>
+<li> Bower</li>
+</ul><h4>
+<a name="sever-side-technologies" class="anchor" href="#sever-side-technologies"><span class="octicon octicon-link"></span></a>Sever Side Technologies</h4>
+
+<ul>
+<li> Spring3 Rest</li>
 <li> Multiple representations support (JSON and XML)</li>
 <li> Custom Exception Handling</li>
 <li> Authentication with spring security</li>
@@ -45,9 +57,47 @@
 <li> Spring data JPA</li>
 <li> Ehcache</li>
 <li> Dozer</li>
-<li> Yeoman Grunt bower</li>
-<li> AngularJs</li>
-</ol>
+</ul><h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>UI Files(static html, css, javascript etc) resides in folder src/main/ui, basically this is yeaoman scaffolding code
+after a build the resulting files would go to directory src/main/webapp/static, which is mapped as static resource in spring mvc</p>
+
+<div class="highlight highlight-xml"><pre> <span class="nt">&lt;mvc:resources</span> <span class="na">order=</span><span class="s">"0"</span> <span class="na">mapping=</span><span class="s">"/static/**"</span> <span class="na">location=</span><span class="s">"/static/, classpath:/META-INF/web-resources/"</span> <span class="na">cache-period=</span><span class="s">"31556926"</span><span class="nt">/&gt;</span>
+
+</pre></div>
+
+<h3>
+<a name="ui-build" class="anchor" href="#ui-build"><span class="octicon octicon-link"></span></a>UI Build</h3>
+
+<div class="highlight highlight-bash"><pre>1.  Go to root of the project 
+2.  npm install
+3.  bower install
+4.  grunt build
+
+</pre></div>
+
+<h3>
+<a name="mvc-build" class="anchor" href="#mvc-build"><span class="octicon octicon-link"></span></a>MVC Build</h3>
+
+<p>Modify srcipt/style refrences of  src/main/webapp/static/index.html file suce that static is appeded to path </p>
+
+<p>Ideally I am expecting a <a href="http://stackoverflow.com/questions/19432595/grunt-change-path-to-all-files">grunt plugin</a> to do this, untill unless the plugin is ready we have to do that manually</p>
+
+<p>for example, modify </p>
+
+<div class="highlight highlight-javascript"><pre><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"scripts/535d1513.scripts.js"</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</pre></div>
+
+<p>as </p>
+
+<div class="highlight highlight-javascript"><pre><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"static/scripts/535d1513.scripts.js"</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</pre></div>
+
+<p>Next run the jetty server</p>
+
+<div class="highlight highlight-bash"><pre>mvn jetty:run
+</pre></div>
         </section>
 
         <aside id="sidebar">
