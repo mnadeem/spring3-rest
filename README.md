@@ -1,17 +1,28 @@
-Spring Rest Example
-===================
+# Client Side MVC with Spring 3 Rest
+---
 
-##### Spring3 Rest example demonstrating
+This example is intended to demonstrate things in two ares
 
-1.  Multiple representations support (JSON and XML)
-2.  Custom Exception Handling
-3.  Authentication with spring security
-4.  Authorization with jsr 250
-5.  Custom Aspect
-6.  Unit Testing
-7.  Codahale Metrics
-8.  Spring data JPA
-9.  Ehcache
-10.  Dozer
-11.  Yeoman Grunt bower
-12.  AngularJs
+#### Client Side Technologies
+*  Angular JS
+*  Yeoman
+*  Grunt
+*  Bower
+
+
+#### Sever Side Technologies
+
+*  Spring3 Rest
+*  Multiple representations support (JSON and XML)
+*  Custom Exception Handling
+*  Authentication with spring security
+*  Authorization with jsr 250
+*  Custom Aspect
+*  Unit Testing
+*  Codahale Metrics
+*  Spring data JPA
+*  Ehcache
+*  Dozer
+*  Bower
+
+
