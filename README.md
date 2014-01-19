@@ -25,8 +25,8 @@ at the same time allow seam less integration between them
 *  Ehcache
 *  Dozer
 
-## Client Side MVC and Spring 3 Rest
----
+## Configuration
+
 UI Files(static html, css, javascript etc) resides in folder src/main/ui, basically this is yeaoman scaffolding code
 after a build the resulting files would go to directory src/main/webapp/static, which is mapped as static resource in spring mvc
 
