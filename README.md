@@ -36,3 +36,11 @@ after a build the resulting files would go to directory src/main/webapp/static, 
 
 ```
 
+### UI Build
+```bash
+*  Go to root of the project 
+*  npm install
+*  bower install
+*  grunt build
+
+```
