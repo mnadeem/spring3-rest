@@ -1,6 +1,6 @@
 ## Client Side MVC and Spring 3 Rest Together
 
-This example is intended to demonstrate things in two ares, this idea is to have clear separation between client side and server side
+This example is intended to demonstrate things in two ares, the idea is to have clear separation between client side and server side
 at the same time allow seam less integration between them
 
 #### Client Side Technologies
