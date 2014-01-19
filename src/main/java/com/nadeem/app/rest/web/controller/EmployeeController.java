@@ -1,6 +1,5 @@
 package com.nadeem.app.rest.web.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codahale.metrics.annotation.Timed;
+import com.nadeem.app.rest.common.EntityConverter;
 import com.nadeem.app.rest.repository.entitiy.Employee;
 import com.nadeem.app.rest.service.EmployeeService;
 import com.nadeem.app.rest.web.support.data.EmployeeData;
@@ -46,25 +46,10 @@ public class EmployeeController {
     public Employees getAllEmp() {
         
         List<Employee> employees = this.employeeService.findAll();
-        
-        return createEmployeesVO(employees);
+
+        return new Employees(EntityConverter.convert(this.dozerMapper, employees, EmployeeData.class));
     }
 
-    private Employees createEmployeesVO(List<Employee> employees)
-    {
-        Employees list = new Employees(newEmployees(employees));
-        return list;
-    }
-
-    private List<EmployeeData> newEmployees(List<Employee> employees)
-    {
-        List<EmployeeData> employeesData = new ArrayList<EmployeeData>();
-        for (Employee employee : employees)
-        {
-            employeesData.add(this.dozerMapper.map(employee, EmployeeData.class));
-        }
-        return employeesData;
-    }
     @Autowired
     public void setEmployeeService(EmployeeService employeeService)
     {
