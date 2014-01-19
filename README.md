@@ -38,9 +38,23 @@ after a build the resulting files would go to directory src/main/webapp/static, 
 
 ### UI Build
 ```bash
-*  Go to root of the project 
-*  npm install
-*  bower install
-*  grunt build
+1.  Go to root of the project 
+2.  npm install
+3.  bower install
+4.  grunt build
 
+```
+
+### MVC Build
+
+Modify srcipt/style refrences of  src/main/webapp/static/index.html file suce that static is appeded to path 
+
+for example, modify 
+```javascript
+<script src="scripts/app.js"></script>
+```
+as 
+
+```javascript
+<script src="static/scripts/app.js"></script>
 ```
