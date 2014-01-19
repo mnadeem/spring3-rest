@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('anguAppApp', []);
+angular.module('anguAppApp', ['ngRoute']);

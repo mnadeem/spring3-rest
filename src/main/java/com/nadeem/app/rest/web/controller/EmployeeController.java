@@ -21,6 +21,7 @@ import com.nadeem.app.rest.web.support.data.EmployeeData;
 import com.nadeem.app.rest.web.support.data.Employees;
 
 @Controller
+@RequestMapping("/service")
 public class EmployeeController {
 
     private EmployeeService employeeService;
