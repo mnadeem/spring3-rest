@@ -1,4 +1,4 @@
-# Client Side MVC with Spring 3 Rest
+# Client Side MVC and Spring 3 Rest
 
 This example is intended to demonstrate things in two ares
 
