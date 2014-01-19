@@ -49,6 +49,8 @@ after a build the resulting files would go to directory src/main/webapp/static, 
 
 Modify srcipt/style refrences of  src/main/webapp/static/index.html file suce that static is appeded to path 
 
+Ideally I am expecting a [grunt plugin][pluginId] to do this, untill unless the plugin is ready we have to do that manually
+
 for example, modify 
 ```javascript
 <script src="scripts/535d1513.scripts.js"></script>
@@ -58,7 +60,11 @@ as
 ```javascript
 <script src="static/scripts/535d1513.scripts.js"></script>
 ```
+Next run the jetty server
 
 ```bash
 mvn jetty:run
 ```
+
+
+[pluginId]: http://stackoverflow.com/questions/19432595/grunt-change-path-to-all-files
