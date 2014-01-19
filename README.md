@@ -1,6 +1,7 @@
 # Client Side MVC and Spring 3 Rest
 
-This example is intended to demonstrate things in two ares
+This example is intended to demonstrate things in two ares, this idea is to have clear separation between client side and server side
+at the same time allow seam less integration between them
 
 #### Client Side Technologies
 
@@ -24,5 +25,14 @@ This example is intended to demonstrate things in two ares
 *  Ehcache
 *  Dozer
 
-UI Files resides in folder src/main/ui, basically this is yo scafolding code
+## Client Side MVC and Spring 3 Rest
+---
+UI Files(static html, css, javascript etc) resides in folder src/main/ui, basically this is yeaoman scaffolding code
+after a build the resulting files would go to directory src/main/webapp/static, which is mapped as static resource in spring mvc
+
+
+```xml
+ <mvc:resources order="0" mapping="/static/**" location="/static/, classpath:/META-INF/web-resources/" cache-period="31556926"/>
+
+```
 
