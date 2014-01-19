@@ -13,3 +13,5 @@ Spring Rest Example
 8.  Spring data JPA
 9.  Ehcache
 10.  Dozer
+11.  Yeoman Grunt bower
+12.  AngularJs
