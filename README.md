@@ -1,9 +1,9 @@
 # Client Side MVC with Spring 3 Rest
----
 
 This example is intended to demonstrate things in two ares
 
 #### Client Side Technologies
+
 *  Angular JS
 *  Yeoman
 *  Grunt
@@ -23,6 +23,6 @@ This example is intended to demonstrate things in two ares
 *  Spring data JPA
 *  Ehcache
 *  Dozer
-*  Bower
 
+UI Files resides in folder src/main/ui, basically this is yo scafolding code
 
