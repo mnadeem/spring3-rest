@@ -44,6 +44,7 @@ after a build the resulting files would go to directory src/main/webapp/static, 
 4.  grunt build
 
 ```
+you can even do `grunt serve`
 
 ### MVC Build
 
