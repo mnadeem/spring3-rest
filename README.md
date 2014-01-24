@@ -24,6 +24,8 @@ at the same time allow seam less integration between them
 *  Spring data JPA
 *  Ehcache
 *  Dozer
+*  Refer [this][proxySupportId] if you want proxy support
+
 
 ## Configuration
 
@@ -69,3 +71,4 @@ mvn jetty:run
 
 
 [pluginId]: http://stackoverflow.com/questions/19432595/grunt-change-path-to-all-files
+[proxySupportId]: http://reachmnadeem.wordpress.com/2014/01/23/configuring-jetty-servlet-proxy/
